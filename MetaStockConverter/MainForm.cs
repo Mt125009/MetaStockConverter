@@ -18,7 +18,7 @@ namespace MetaStockConverter
             StartPosition = FormStartPosition.CenterScreen;
 
             Label label = new Label();
-            label.Text = "File CSV MultiCharts:";
+            label.Text = "File .asc MultiCharts:";
             label.AutoSize = true;
             label.Location = new Point(30, 30);
 
@@ -27,7 +27,7 @@ namespace MetaStockConverter
             txtFile.Width = 420;
 
             btnBrowse = new Button();
-            btnBrowse.Text = "Seleziona CSV...";
+            btnBrowse.Text = "Seleziona asc...";
             btnBrowse.Location = new Point(460, 58);
             btnBrowse.Width = 100;
             btnBrowse.Click += BtnBrowse_Click;
@@ -47,8 +47,8 @@ namespace MetaStockConverter
         private void BtnBrowse_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = "Seleziona file CSV";
-            dialog.Filter = "File CSV (*.csv)|*.csv|Tutti i file (*.*)|*.*";
+            dialog.Title = "Seleziona file asc MultiCharts";
+            dialog.Filter = "File asc (*.asc)|*.asc|Tutti i file (*.*)|*.*";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -61,7 +61,7 @@ namespace MetaStockConverter
             if (txtFile.Text == "")
             {
                 MessageBox.Show(
-                    "Seleziona prima un file CSV.",
+                    "Seleziona prima un file asc.",
                     "MetaStock Converter",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
