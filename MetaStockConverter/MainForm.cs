@@ -52,6 +52,8 @@ namespace MetaStockConverter
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                PreConverterForm preConverterForm = new PreConverterForm();
+                preConverterForm.ShowDialog();
                 txtFile.Text = dialog.FileName;
             }
         }
