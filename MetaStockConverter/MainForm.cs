@@ -69,7 +69,7 @@ namespace MetaStockConverter
                 return;
             }
 
-            PreConverterForm preConverterForm = new PreConverterForm();
+            PreConverterForm preConverterForm = new PreConverterForm(filePath: txtFile.Text);
             preConverterForm.ShowDialog();
             
             MessageBox.Show(

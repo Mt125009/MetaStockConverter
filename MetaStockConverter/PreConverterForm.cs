@@ -1,19 +1,39 @@
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MetaStockConverter
 {
     public class PreConverterForm : Form
     {
-        public PreConverterForm()
+        public PreConverterForm(String filePath)
         {
             InitializeComponent();
-            //Text = "Validazione dati";
-            //Width = 400;
-            //Height = 200;
-            //StartPosition = FormStartPosition.CenterScreen;
+            label2.Text = "File: " + filePath;
+            dataGrid1.DataSource = LoadDataFromFile(filePath);
+            
     }
+
+        private object LoadDataFromFile(string filePath)
+        {
+            File.Open(filePath, FileMode.Open, FileAccess.Read).Close();
+            String header = File.ReadAllText(filePath).Split(new[] { Environment.NewLine }, StringSplitOptions.None)[0];
+            String[] columns = header.Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+            
+            var dataTable = new System.Data.DataTable();
+            foreach (String column in columns)
+            {
+                dataTable.Columns.Add(column);
+            }
+            String [] lines = File.ReadAllLines(filePath);
+            for (int i = 1; i < lines.Length; i++)
+            {
+                String[] values = lines[i].Split(new[] { ' ', ',' });
+                dataTable.Rows.Add(values);
+            }
+            return dataTable;
+        }
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -58,8 +78,8 @@ namespace MetaStockConverter
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(982, 726);
-            this.splitContainer1.SplitterDistance = 327;
+            this.splitContainer1.Size = new System.Drawing.Size(982, 553);
+            this.splitContainer1.SplitterDistance = 325;
             this.splitContainer1.TabIndex = 2;
             // 
             // label3
@@ -68,7 +88,7 @@ namespace MetaStockConverter
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(0, 111);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(327, 515);
+            this.label3.Size = new System.Drawing.Size(325, 342);
             this.label3.TabIndex = 3;
             this.label3.Text = "I dati inseriti sono stati aperti, Controllare che siano stati caricati correttam" + "ente prima di procedere.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -78,16 +98,16 @@ namespace MetaStockConverter
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 626);
+            this.panel1.Location = new System.Drawing.Point(0, 453);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(327, 100);
+            this.panel1.Size = new System.Drawing.Size(325, 100);
             this.panel1.TabIndex = 2;
             // 
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(197, 37);
+            this.button2.Location = new System.Drawing.Point(195, 37);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -111,7 +131,7 @@ namespace MetaStockConverter
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(327, 111);
+            this.label1.Size = new System.Drawing.Size(325, 111);
             this.label1.TabIndex = 1;
             this.label1.Text = "Apertura Dati";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -122,32 +142,22 @@ namespace MetaStockConverter
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 100);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(651, 626);
+            this.panel3.Size = new System.Drawing.Size(653, 453);
             this.panel3.TabIndex = 2;
             // 
             // dataGrid1
             // 
-            this.dataGrid1.AlternatingBackColor = System.Drawing.Color.LightGray;
-            this.dataGrid1.BackColor = System.Drawing.Color.DarkGray;
-            this.dataGrid1.CaptionBackColor = System.Drawing.Color.White;
-            this.dataGrid1.CaptionFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.dataGrid1.CaptionForeColor = System.Drawing.Color.Navy;
+            this.dataGrid1.AllowNavigation = false;
+            this.dataGrid1.AllowSorting = false;
             this.dataGrid1.DataMember = "";
             this.dataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGrid1.ForeColor = System.Drawing.Color.Black;
-            this.dataGrid1.GridLineColor = System.Drawing.Color.Black;
-            this.dataGrid1.GridLineStyle = System.Windows.Forms.DataGridLineStyle.None;
-            this.dataGrid1.HeaderBackColor = System.Drawing.Color.Silver;
-            this.dataGrid1.HeaderForeColor = System.Drawing.Color.Black;
-            this.dataGrid1.LinkColor = System.Drawing.Color.Navy;
+            this.dataGrid1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
             this.dataGrid1.Location = new System.Drawing.Point(0, 0);
             this.dataGrid1.Margin = new System.Windows.Forms.Padding(10);
             this.dataGrid1.Name = "dataGrid1";
-            this.dataGrid1.ParentRowsBackColor = System.Drawing.Color.White;
-            this.dataGrid1.ParentRowsForeColor = System.Drawing.Color.Black;
-            this.dataGrid1.SelectionBackColor = System.Drawing.Color.Navy;
-            this.dataGrid1.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGrid1.Size = new System.Drawing.Size(651, 626);
+            this.dataGrid1.PreferredColumnWidth = 100;
+            this.dataGrid1.ReadOnly = true;
+            this.dataGrid1.Size = new System.Drawing.Size(653, 453);
             this.dataGrid1.TabIndex = 0;
             // 
             // panel2
@@ -156,7 +166,7 @@ namespace MetaStockConverter
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(651, 100);
+            this.panel2.Size = new System.Drawing.Size(653, 100);
             this.panel2.TabIndex = 1;
             // 
             // label2
@@ -164,14 +174,14 @@ namespace MetaStockConverter
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 100);
+            this.label2.Size = new System.Drawing.Size(651, 100);
             this.label2.TabIndex = 0;
             this.label2.Text = "File:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PreConverterForm
             // 
-            this.ClientSize = new System.Drawing.Size(982, 726);
+            this.ClientSize = new System.Drawing.Size(982, 553);
             this.Controls.Add(this.splitContainer1);
             this.Name = "PreConverterForm";
             this.Text = "Apertura file";
