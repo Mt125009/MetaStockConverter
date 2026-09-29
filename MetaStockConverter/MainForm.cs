@@ -52,8 +52,6 @@ namespace MetaStockConverter
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                PreConverterForm preConverterForm = new PreConverterForm();
-                preConverterForm.ShowDialog();
                 txtFile.Text = dialog.FileName;
             }
         }
@@ -71,6 +69,9 @@ namespace MetaStockConverter
                 return;
             }
 
+            PreConverterForm preConverterForm = new PreConverterForm();
+            preConverterForm.ShowDialog();
+            
             MessageBox.Show(
                 "File selezionato:\r\n" + txtFile.Text,
                 "Test conversione",
