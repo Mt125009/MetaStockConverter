@@ -226,7 +226,6 @@ namespace MetaStockConverter
         private void button2_Click(object sender, EventArgs e)
         {
             ConverterForm converterForm = new ConverterForm(filePath : label2.Text.Substring(6));
-            //Close();
             converterForm.Show();
             
         }
