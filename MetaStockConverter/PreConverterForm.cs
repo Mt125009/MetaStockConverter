@@ -13,6 +13,7 @@ namespace MetaStockConverter
             label2.Text = "File: " + filePath;
             dataGrid1.DataSource = LoadDataFromFile(filePath);
             
+            
     }
 
         private object LoadDataFromFile(string filePath)
@@ -64,6 +65,8 @@ namespace MetaStockConverter
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -73,13 +76,15 @@ namespace MetaStockConverter
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1MinSize = 200;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(982, 553);
-            this.splitContainer1.SplitterDistance = 325;
+            this.splitContainer1.Panel2MinSize = 900;
+            this.splitContainer1.Size = new System.Drawing.Size(1182, 553);
+            this.splitContainer1.SplitterDistance = 278;
             this.splitContainer1.TabIndex = 2;
             // 
             // label3
@@ -88,7 +93,7 @@ namespace MetaStockConverter
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(0, 111);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(325, 342);
+            this.label3.Size = new System.Drawing.Size(278, 342);
             this.label3.TabIndex = 3;
             this.label3.Text = "I dati inseriti sono stati aperti, Controllare che siano stati caricati correttam" + "ente prima di procedere.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -100,19 +105,20 @@ namespace MetaStockConverter
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 453);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(325, 100);
+            this.panel1.Size = new System.Drawing.Size(278, 100);
             this.panel1.TabIndex = 2;
             // 
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(195, 37);
+            this.button2.Location = new System.Drawing.Point(148, 37);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Continua";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -123,6 +129,7 @@ namespace MetaStockConverter
             this.button1.TabIndex = 0;
             this.button1.Text = "Annulla";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -131,7 +138,7 @@ namespace MetaStockConverter
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(325, 111);
+            this.label1.Size = new System.Drawing.Size(278, 111);
             this.label1.TabIndex = 1;
             this.label1.Text = "Apertura Dati";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -140,9 +147,9 @@ namespace MetaStockConverter
             // 
             this.panel3.Controls.Add(this.dataGrid1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 100);
+            this.panel3.Location = new System.Drawing.Point(0, 47);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(653, 453);
+            this.panel3.Size = new System.Drawing.Size(900, 506);
             this.panel3.TabIndex = 2;
             // 
             // dataGrid1
@@ -157,7 +164,7 @@ namespace MetaStockConverter
             this.dataGrid1.Name = "dataGrid1";
             this.dataGrid1.PreferredColumnWidth = 100;
             this.dataGrid1.ReadOnly = true;
-            this.dataGrid1.Size = new System.Drawing.Size(653, 453);
+            this.dataGrid1.Size = new System.Drawing.Size(900, 506);
             this.dataGrid1.TabIndex = 0;
             // 
             // panel2
@@ -166,7 +173,7 @@ namespace MetaStockConverter
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(653, 100);
+            this.panel2.Size = new System.Drawing.Size(900, 47);
             this.panel2.TabIndex = 1;
             // 
             // label2
@@ -174,16 +181,17 @@ namespace MetaStockConverter
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(651, 100);
+            this.label2.Size = new System.Drawing.Size(651, 47);
             this.label2.TabIndex = 0;
             this.label2.Text = "File:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PreConverterForm
             // 
-            this.ClientSize = new System.Drawing.Size(982, 553);
+            this.ClientSize = new System.Drawing.Size(1182, 553);
             this.Controls.Add(this.splitContainer1);
             this.Name = "PreConverterForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Apertura file";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -214,5 +222,18 @@ namespace MetaStockConverter
         private System.Windows.Forms.Label label1;
 
         private System.Windows.Forms.SplitContainer splitContainer1;
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ConverterForm converterForm = new ConverterForm(filePath : label2.Text.Substring(6));
+            //Close();
+            converterForm.Show();
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
