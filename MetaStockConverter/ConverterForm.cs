@@ -786,10 +786,5 @@ namespace MetaStockConverter
         private System.Windows.Forms.ProgressBar progressBar1;
 
         private System.Windows.Forms.Label label1;
-
-        private void progressBar1_Click(object sender, EventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
