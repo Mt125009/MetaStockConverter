@@ -36,6 +36,7 @@ namespace MetaStockConverter
                     MessageBoxIcon.Information);
                 PostConverterForm postConverterForm = new PostConverterForm(_convertedLines);
                 postConverterForm.Show();
+                Close();
             }
             else
             {
