@@ -251,7 +251,7 @@ namespace MetaStockConverter
                 {
                     FileSaver(filePath);
                     MessageBox.Show("File salvato correttamente.", "Salvataggio completato", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Close();
+                    Application.Exit();
                 }
                 catch (Exception ex)
                 {
