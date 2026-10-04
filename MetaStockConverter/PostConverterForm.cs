@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MetaStockConverter
@@ -16,40 +18,54 @@ namespace MetaStockConverter
         
         private void LoadDataGrid(string[,] converterLines)
         {
-            var dataTable = new System.Data.DataTable();
-            for (int i = 0; i < converterLines.GetLength(1)-1; i++)
+            try
             {
-                dataTable.Columns.Add(converterLines[0, i]);
-            }
-            for (int j = 1; j < converterLines.GetLength(0); j++)
-            {
-                var dataRow = dataTable.NewRow();
+                var dataTable = new DataTable();
                 for (int i = 0; i < converterLines.GetLength(1)-1; i++)
                 {
-                    dataRow[i] = converterLines[j, i];
+                    dataTable.Columns.Add(converterLines[0, i]);
                 }
-                dataTable.Rows.Add(dataRow);
+                for (int j = 1; j < converterLines.GetLength(0); j++)
+                {
+                    var dataRow = dataTable.NewRow();
+                    for (int i = 0; i < converterLines.GetLength(1)-1; i++)
+                    {
+                        dataRow[i] = converterLines[j, i];
+                    }
+                    dataTable.Rows.Add(dataRow);
+                }
+                dataGrid1.DataSource = dataTable;
             }
-            dataGrid1.DataSource = dataTable;
+            catch (Exception e)
+            {
+                MessageBox.Show("Errore durante il caricamento dei dati nella griglia: " + e.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FileSaver(string filePath)
         {
-            using (var writer = new System.IO.StreamWriter(filePath))
+            try
             {
-                for (int j = 0; j < _converterLines.GetLength(0); j++)
+                using (var writer = new StreamWriter(filePath))
                 {
-                    string line = "";
-                    for (int i = 0; i < _converterLines.GetLength(1); i++)
+                    for (int j = 0; j < _converterLines.GetLength(0); j++)
                     {
-                        line += _converterLines[j, i];
-                        if (i < _converterLines.GetLength(1) - 1)
+                        string line = "";
+                        for (int i = 0; i < _converterLines.GetLength(1); i++)
                         {
-                            line += ","; // Tab-separated values
+                            line += _converterLines[j, i];
+                            if (i < _converterLines.GetLength(1) - 1)
+                            {
+                                line += ","; // Tab-separated values
+                            }
                         }
+                        writer.WriteLine(line);
                     }
-                    writer.WriteLine(line);
                 }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Errore durante il salvataggio del file: " + e.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
