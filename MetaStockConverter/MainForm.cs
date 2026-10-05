@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace MetaStockConverter
 {
-    public class MainForm : Form
+    public class MainForm : BaseForm
     {
         public MainForm()
         {

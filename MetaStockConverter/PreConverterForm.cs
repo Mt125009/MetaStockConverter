@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MetaStockConverter
 {
-    public class PreConverterForm : Form
+    public class PreConverterForm : BaseForm
     {
         public PreConverterForm(String filePath)
         {

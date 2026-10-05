@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MetaStockConverter
 {
-    public class PostConverterForm : Form
+    public class PostConverterForm : BaseForm
     {
         string[,] _converterLines;
         public PostConverterForm(string[,] converterLines)

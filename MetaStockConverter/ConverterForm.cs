@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MetaStockConverter
 {
-    public class ConverterForm : Form
+    public class ConverterForm : BaseForm
     {
         // Global variable to hold the file lines
         private readonly string _filePath;
