@@ -4,6 +4,10 @@
         <OutputType>WinExe</OutputType>
         <TargetFramework>net40</TargetFramework>
         <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+        
+        <Version>1.0.0</Version>
+        <FileVersion>1.0.0</FileVersion>
+        <InformationalVersion>1.0.0</InformationalVersion>
     </PropertyGroup>
 
     <ItemGroup>

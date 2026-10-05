@@ -102,7 +102,7 @@ namespace MetaStockConverter
             // 
             // panel3
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.linkLabel1);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -117,7 +117,7 @@ namespace MetaStockConverter
             this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.linkLabel1.Location = new System.Drawing.Point(0, 23);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(266, 73);
+            this.linkLabel1.Size = new System.Drawing.Size(268, 75);
             this.linkLabel1.TabIndex = 1;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "GitHub - Mt125009";
@@ -130,7 +130,7 @@ namespace MetaStockConverter
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(266, 23);
+            this.label3.Size = new System.Drawing.Size(268, 23);
             this.label3.TabIndex = 0;
             this.label3.Text = "Maggiori informazioni su:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -142,7 +142,7 @@ namespace MetaStockConverter
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(270, 261);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Utility di conversione dati da .asc (MultiCharts64) in MetaStock compatibile";
+            this.label2.Text = "Utility di conversione dati da .asc (MultiCharts64) in MetaStock compatibile.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label1
